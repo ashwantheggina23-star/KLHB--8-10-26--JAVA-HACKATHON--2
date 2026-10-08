@@ -1,0 +1,66 @@
+import java.util.Scanner;
+
+class MovieTicket {
+
+    String movieName;
+    double ticketPrice;
+    int numberOfTickets;
+    double total;
+    double discount;
+    double finalAmount;
+
+    MovieTicket(String movieName, double ticketPrice, int numberOfTickets) {
+        this.movieName = movieName;
+        this.ticketPrice = ticketPrice;
+        this.numberOfTickets = numberOfTickets;
+    }
+
+    void calculateTotal() {
+        total = ticketPrice * numberOfTickets;
+    }
+
+    void calculateDiscount() {
+        if (numberOfTickets >= 5) {
+            discount = total * 10 / 100;
+        } else {
+            discount = 0;
+        }
+    }
+
+    void calculateFinalAmount() {
+        finalAmount = total - discount;
+    }
+
+    void displayBill() {
+        System.out.println("Cinema Ticket Bill");
+        System.out.println("Movie Name: " + movieName);
+        System.out.printf("Ticket Price: %.2f\n", ticketPrice);
+        System.out.println("Number of Tickets: " + numberOfTickets);
+        System.out.printf("Discount: %.2f\n", discount);
+        System.out.printf("Final Amount: %.2f\n", finalAmount);
+    }
+}
+
+public class SHOWMYBOOK {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter movie name: ");
+        String movieName = sc.nextLine();
+
+        System.out.print("Enter ticket price: ");
+        double ticketPrice = sc.nextDouble();
+
+        System.out.print("Enter number of tickets: ");
+        int numberOfTickets = sc.nextInt();
+
+        MovieTicket m = new MovieTicket(movieName, ticketPrice, numberOfTickets);
+
+        m.calculateTotal();
+        m.calculateDiscount();
+        m.calculateFinalAmount();
+        m.displayBill();
+    }
+}
